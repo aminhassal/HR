@@ -30,7 +30,8 @@ require 'config.php';
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -46,8 +47,8 @@ require 'config.php';
                             <label for="fname"> الطلبة :</label><br>
                         </div>
                         <div class="mb-3">
-                            <a href="Students_InsertToClass.php?ClassID=<?= $_GET['ClassID']; ?>" 
-                            class="btn btn-dark float-end">إضافة طالب</a>
+                            <a href="Students_InsertToClass.php?ClassID=<?= $_GET['ClassID']; ?>"
+                                class="btn btn-dark float-end">إضافة طالب</a>
                         </div>
                         </from>
                         <div class="card-body">
@@ -62,11 +63,6 @@ require 'config.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <!-- CREATE VIEW Student_In_Class AS
-                                 SELECT infostd.Uid,infostd.Name,infostd.InRollNumber,studentclass.ClassID
-                                 FROM Class INNER JOIN subjects ON Class.SubjectID_FK = subjects.SubjectID_PK
-                                  INNER JOIN studentclass ON Class.ClassID = studentclass.ClassID INNER JOIN 
-                                  infostd ON studentclass.StdUid_FK = infostd.Uid ; -->
                                     <?php
                                     if (isset($_GET['ClassID'])) {
                                         $ClassID = mysqli_real_escape_string($con, $_GET['ClassID']);
@@ -76,16 +72,16 @@ require 'config.php';
                                         if (mysqli_num_rows($query_run) > 0) {
                                             foreach ($query_run as $student) {
                                     ?>
-                                                <tr>
-                                                    <td><?= $student['Uid']; ?></td>
-                                                    <td><?= $student['Name']; ?></td>
-                                                    <td><?= $student['InRollNumber']; ?></td>
-                                                    <td>
-                                                    <button type="#" name="delete_studentInClassID" 
-                                                     class="btn btn-danger btn-sm">حذف</button>
-                                                    </td>
-                                                </tr>
-                                        <?php
+                                    <tr>
+                                        <td><?= $student['Uid']; ?></td>
+                                        <td><?= $student['Name']; ?></td>
+                                        <td><?= $student['InRollNumber']; ?></td>
+                                        <td>
+                                            <button type="#" name="delete_studentInClassID"
+                                                class="btn btn-danger btn-sm">حذف</button>
+                                        </td>
+                                    </tr>
+                                    <?php
                                             }
                                         } else {
                                             echo "<h5> No Record Found </h5>";
@@ -108,3 +104,9 @@ require 'config.php';
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/custom.js"></script>
     </body>
+
+    <!-- CREATE VIEW Student_In_Class AS
+                                 SELECT infostd.Uid,infostd.Name,infostd.InRollNumber,studentclass.ClassID
+                                 FROM Class INNER JOIN subjects ON Class.SubjectID_FK = subjects.SubjectID_PK
+                                  INNER JOIN studentclass ON Class.ClassID = studentclass.ClassID INNER JOIN 
+                                  infostd ON studentclass.StdUid_FK = infostd.Uid ; -->

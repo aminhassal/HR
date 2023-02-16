@@ -63,7 +63,7 @@
                      <div class="collapse navbar-collapse mr-5 pr-3" id="navbarsExample04">
                         <ul class="navbar-nav mr-auto">
                            <li class="nav-item ">
-                              <a class="nav-link" href="index.php"> الرئسية </a>
+                              <a class="nav-link" href="Old_index1.PHP"> الرئسية </a>
                            </li>
                            <li class="nav-item active">
                               <a class="nav-link" href="about.php">حول</a>

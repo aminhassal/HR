@@ -123,6 +123,9 @@
             <div class="card-header">  
                   <a href="courses.php" class="btn btn-dark float-end">   فتح فصل</a>
           </div>
+          <div class="card-header">
+                    <a href="SyncOrder.php" class="btn btn-dark float-end">   مزامنة السجلات     </a>
+            </div>
             <div class="card-body">
 
                 <table class="table table-bordered table-striped">

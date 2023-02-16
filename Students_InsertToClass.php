@@ -17,13 +17,13 @@
         <?php include('message.php'); ?>
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="shadow-lg p-3 mb-5 bg-body rounded">
                     <div class="card-header">
                         <h4> إضافة طالب
                             <a href="lecture.php" class="btn btn-danger float-end">رجوع</a>
                         </h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="text-align:center">
                         <form action="code.php" method="POST">
                             <input type="hidden" name="ClassID" value=<?php echo $_GET['ClassID']; ?>>
                             </input>
@@ -35,23 +35,25 @@
                                 $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
                             }
                             ?>
-                            <div class="mb-3">
-                                <label>إسم الطالب </label>
-                                <select name="Uid">
+                            <div class="p-3 mb-2 bg-light text-dark" .bg-light>
+                                <h2>قائمة الطلبة </h2>
+                                <select name="Uid" class="form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example" style="text-align:center">
                                     <option>إختر الطالب</option>
                                     <?php
                                     foreach ($options as $option) {
                                     ?>
-                                        <option value='<?php echo $option['Uid'] ?>'>
-                                            <?php echo $option['Name']; ?>
-                                        </option>
-                                        <?php
+                                    <option value='<?php echo $option['Uid'] ?>'>
+                                        <?php echo $option['Name']; ?>
+                                    </option>
+                                    <?php
                                                 }
                                         ?>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="save_StudentInStudentclass" class="btn btn-primary">إضافة</button>
+                                <button type="submit" name="save_StudentInStudentclass"
+                                    class="btn btn-primary">إضافة</button>
                             </div>
                         </form>
                     </div>
