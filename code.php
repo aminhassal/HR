@@ -30,26 +30,33 @@ if(isset($_POST['savecourses']))
         exit(0);
     }
 }
-//Delete Student From Subject \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ <<<<<
+//Delete Student From Class \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ <<<<<
+// select `hrr`.`infostd`.`Uid` AS `Uid`,
+// `hrr`.`infostd`.`Name` AS `Name`,
+// `hrr`.`infostd`.`InRollNumber` AS `InRollNumber`
+// ,`hrr`.`studentclass`.`ClassID` AS `ClassID`
+//  from (((`hrr`.`class` join `hrr`.`subjects` on(`hrr`.`class`.`SubjectID_FK` = `hrr`.`subjects`.`SubjectID_PK`))
+//   join `hrr`.`studentclass` on(`hrr`.`class`.`ClassID` = `hrr`.`studentclass`.`ClassID`))
+//  join `hrr`.`infostd` on(`hrr`.`studentclass`.`StdUid_FK` = `hrr`.`infostd`.`Uid`))
+
 if(isset($_POST['delete_studentInClassID']))
 {
-    $student_id = mysqli_real_escape_string($con, $_POST['Uid']);
-    $ClassID = mysqli_real_escape_string($con, $_GET['ClassID']);
-    $query = "DELETE FROM `substd`
-        WHERE StdUid_FK= $student_id
-          AND ClassID= $SubjectID_PK";
+    $student = mysqli_real_escape_string($con, $_POST['delete_studentInClassID']);
+    $ClassID = mysqli_real_escape_string($con, $_POST['ClassID']);
+    $query = "DELETE FROM `studentclass`
+        WHERE StudentClassID = $student";
     $query_run = mysqli_query($con, $query);
     if($query_run)
     {
-        $_SESSION['message'] = "تم حذف الطالب";
-        // header("Location: Students_InSubjects.PHP");
-        // exit(0);
+        $_SESSION['message'] = "  تم حذف الطالب  ";
+        header("Location: Students_InClass.PHP?ClassID=$ClassID");
+        exit(0);
     }
     else
     {
-        $_SESSION['message'] = "     فشلت العملية";
-        // header("Location: Students_InSubjects.PHP");
-        // exit(0);
+        $_SESSION['message'] = "  فشلت العملية  ";
+        header("Location: Students_InClass.PHP?ClassID=$ClassID");
+        exit(0);
     }
 }
 //
@@ -162,8 +169,14 @@ if(isset($_POST['save_StudentInStudentclass']))
     $ClassID = mysqli_real_escape_string($con, $_POST['ClassID']);
 
     $query = "INSERT INTO `studentclass`(`StdUid_FK`, `ClassID`)
-     VALUES
-     ('$StdUid_FK','$ClassID')";
+    VALUES
+    ('$StdUid_FK','$ClassID')
+         ON DUPLICATE KEY UPDATE
+        `StdUid_FK`='$StdUid_FK',`ClassID`='$ClassID';";
+
+    //  $query = "INSERT INTO `studentclass`(`StdUid_FK`, `ClassID`)
+    //  VALUES
+    // ('$StdUid_FK','$ClassID')";
 
     $query_run = mysqli_query($con, $query);
     if($query_run)

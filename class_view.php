@@ -49,8 +49,6 @@
                             <input type="text" name="fname"><br>
                         </div>
                         <div class="mb-3">
-                            <a href="Students_InsertToClass.php?ClassID=<?= $_GET['ClassID']; ?>"
-                                class="btn btn-dark float-end">إضافة طالب</a>
                             <button method="POST" type="submit" name="savecourses" class="btn btn-dark">إضافة
                                 محاضرة</button>
                         </div>

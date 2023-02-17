@@ -77,8 +77,9 @@ require 'config.php';
                                         <td><?= $student['Name']; ?></td>
                                         <td><?= $student['InRollNumber']; ?></td>
                                         <td>
-                                            <button type="#" name="delete_studentInClassID"
-                                                class="btn btn-danger btn-sm">حذف</button>
+                                            <form action="code.php" method="POST" class="d-inline">
+                                            <button type="submit" name="delete_studentInClassID" value="<?=$student['StudentClassID'];?>" class="btn btn-danger btn-sm">حذف</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <?php
