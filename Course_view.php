@@ -57,7 +57,9 @@
                                 <td><?= $student['Uid']; ?></td>
                                 <td><?= $student['Name']; ?></td>
                                 <td><?= $student['InRollNumber']; ?></td>
-                                <td> a</td>
+                                <td <?php if(true): ?> style="background-color:#0f0;" <?php endif; ?>>
+                                 <?php echo "حضور";?>
+                                </td>
                             </tr>
                             <?php
                                 }
