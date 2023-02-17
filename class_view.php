@@ -70,8 +70,8 @@
                                 <tbody>
                                     <?php 
                             if(isset($_GET['ClassID'])){
-                            $ClassID_FK =mysqli_real_escape_string($con, $_GET['ClassID']);
-                            $query = "SELECT * FROM courses where ClassID_FK= $ClassID_FK";
+                            $ClassID =mysqli_real_escape_string($con, $_GET['ClassID']);
+                            $query = "SELECT * FROM courses where ClassID_FK= $ClassID";
                             $query_run = mysqli_query($con, $query);
                             
                             if(mysqli_num_rows($query_run) > 0)
@@ -84,7 +84,7 @@
                                         <td><?= $student['CourseName']; ?></td>
                                         <td><?= $student['OpenDate']; ?></td>
                                         <td>
-                                            <a href="Course_view.php?ClassID=<?= $ClassID_FK['ClassID']; ?>"
+                                            <a href="Course_view.php?ClassID=<?php echo $_GET['ClassID'];?>"
                                                 class="btn btn-info btn-sm">عرض</a>
                                         </td>
                                     </tr>

@@ -79,6 +79,7 @@ require 'config.php';
                                         <td>
                                             <form action="code.php" method="POST" class="d-inline">
                                             <button type="submit" name="delete_studentInClassID" value="<?=$student['StudentClassID'];?>" class="btn btn-danger btn-sm">حذف</button>
+                                            <input type="hidden" name="ClassID" value="<?=$student['ClassID'];?>" />
                                             </form>
                                         </td>
                                     </tr>
