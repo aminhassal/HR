@@ -196,11 +196,14 @@ if(isset($_POST['save_StudentInStudentclass']))
 if(isset($_POST['Calc']))
 {
     $CourseiID_FK = mysqli_real_escape_string($con, $_POST['CourseiID']);
-    $query = "INSERT INTO `masterofcourse`( `RecordID_FK`,`StudentUID`, `CourseiID_FK`)
-    SELECT DISTINCT `hrr`.`records`.`RecordID_PK` AS `RecordID_PK`,
-    `hrr`.`records`.`StudentUID` AS `StudentUID`,
-    `hrr`.`courses`.`CourseiID` AS `CourseiID` from (`hrr`.`records` join `hrr`.`courses`)
-     WHERE `hrr`.`records`.`RecordDate` = `hrr`.`courses`.`OpenDate`;";
+    $ClassID = mysqli_real_escape_string($con, $_POST['ClassID']);
+    $query = "INSERT INTO `masterofcourse`( `RecordID_FK`,`StudentUID`, `CourseiID_FK`,`ClassID`)
+     SELECT DISTINCT `hrr`.`records`.`RecordID_PK` AS `RecordID_PK`,
+      `hrr`.`records`.`StudentUID` AS `StudentUID`,
+      `hrr`.`courses`.`CourseiID` AS `CourseiID`,
+       `hrr`.`courses`.`ClassID_FK` AS `ClassID_FK`
+        from (`hrr`.`records` join `hrr`.`courses`)
+     WHERE `hrr`.`records`.`RecordDate` = `hrr`.`courses`.`OpenDate` and `hrr`.`courses`.`ClassID_FK` = $ClassID;";
 
     $query_run = mysqli_query($con, $query);
     if($query_run)
@@ -212,7 +215,7 @@ if(isset($_POST['Calc']))
        $_SESSION['message'] = " فشلت الاحتساب";
     }
 }
-///////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class DAL {
    public $StudentUID;
    public $RecordStatus;

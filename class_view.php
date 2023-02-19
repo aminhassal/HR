@@ -79,7 +79,9 @@ require 'config.php';
                                                     <td><?= $student['CourseName']; ?></td>
                                                     <td><?= $student['OpenDate']; ?></td>
                                                     <td>
-                                                        <a href="Course_view.php?CourseiID=<?php echo $student['CourseiID']; ?>" class="btn btn-info btn-sm">عرض</a>
+                                                        <a href="Course_view.php?CourseiID=<?php echo $student['CourseiID']; ?>
+                                                        &ClassID=<?php echo $student['ClassID_FK']; ?>"
+                                                         class="btn btn-info btn-sm">عرض</a>
                                                     </td>
                                                 </tr>
                                     <?php
@@ -115,6 +117,7 @@ require 'config.php';
                         <div class="mb-3">
                             <button method="POST" title="رصد حضور" type="submit" name="Calc" class="btn btn-warning" value="<?= $student['CourseiID']; ?>"> احتساب </button>
                             <input type="hidden" name="CourseiID" value="<?= $CourseiID['CourseiID']; ?>" />
+                            <input type="hidden" name="CourseiID" value="<?= $ClassID['ClassID']; ?>" />
                         </div>
                 </div>
             </div>

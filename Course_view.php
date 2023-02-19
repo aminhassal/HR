@@ -46,7 +46,10 @@ require 'config.php';
                             <?php
                             if (isset($_GET['CourseiID'])) {
                                 $CourseID = mysqli_real_escape_string($con, $_GET['CourseiID']);
-                                $query = "SELECT * FROM `attendence` WHERE CourseiID = $CourseID";
+                                $ClassID = mysqli_real_escape_string($con, $_GET['ClassID']);
+                                $query = "SELECT * FROM `attendence`
+                                 WHERE CourseiID = $CourseID
+                                 AND ClassID_FK = $ClassID";
                                 $query_run = mysqli_query($con, $query);
 
                                 if (mysqli_num_rows($query_run) > 0) {
