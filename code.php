@@ -197,6 +197,8 @@ if(isset($_POST['Calc']))
 {
     $CourseiID_FK = mysqli_real_escape_string($con, $_POST['CourseiID']);
     $ClassID = mysqli_real_escape_string($con, $_POST['ClassID']);
+    $query2 = "DELETE FROM `masterofcourse`;";
+    $query_run = mysqli_query($con, $query2);
     $query = "INSERT INTO `masterofcourse`( `RecordID_FK`,`StudentUID`, `CourseiID_FK`,`ClassID`)
      select `hrr`.`records`.`RecordID_PK` AS `RecordID_PK`,
      `hrr`.`studentclass`.`StdUid_FK` AS `StdUid_FK`,
@@ -209,10 +211,13 @@ if(isset($_POST['Calc']))
     $query_run = mysqli_query($con, $query);
     if($query_run)
     {
+        header("Location:class_view.php?ClassID=$ClassID");
         $_SESSION['message'] = "تم الاحتساب";
+
     }
     else
     {
+        header("Location:class_view.php?ClassID=$ClassID");
        $_SESSION['message'] = " فشلت الاحتساب";
     }
 }
