@@ -198,12 +198,13 @@ if(isset($_POST['Calc']))
     $CourseiID_FK = mysqli_real_escape_string($con, $_POST['CourseiID']);
     $ClassID = mysqli_real_escape_string($con, $_POST['ClassID']);
     $query = "INSERT INTO `masterofcourse`( `RecordID_FK`,`StudentUID`, `CourseiID_FK`,`ClassID`)
-     SELECT DISTINCT `hrr`.`records`.`RecordID_PK` AS `RecordID_PK`,
-      `hrr`.`records`.`StudentUID` AS `StudentUID`,
-      `hrr`.`courses`.`CourseiID` AS `CourseiID`,
-       `hrr`.`courses`.`ClassID_FK` AS `ClassID_FK`
-        from (`hrr`.`records` join `hrr`.`courses`)
-     WHERE `hrr`.`records`.`RecordDate` = `hrr`.`courses`.`OpenDate` and `hrr`.`courses`.`ClassID_FK` = $ClassID;";
+     select `hrr`.`records`.`RecordID_PK` AS `RecordID_PK`,
+     `hrr`.`studentclass`.`StdUid_FK` AS `StdUid_FK`,
+     `hrr`.`courses`.`CourseiID` AS `CourseiID`,
+     `hrr`.`studentclass`.`ClassID` AS `ClassID`
+      from ((`hrr`.`studentclass` join `hrr`.`records` on (`hrr`.`studentclass`.`StdUid_FK` = `hrr`.`records`.`StudentUID`))
+       join `hrr`.`courses` on(`hrr`.`studentclass`.`ClassID` = `hrr`.`courses`.`ClassID_FK`
+      and `hrr`.`records`.`RecordDate` = `hrr`.`courses`.`OpenDate`)) WHERE `hrr`.`studentclass`.`ClassID` = $ClassID;";
 
     $query_run = mysqli_query($con, $query);
     if($query_run)
