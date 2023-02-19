@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    require 'config.php';
+session_start();
+require 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +30,7 @@
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-        media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -49,12 +48,10 @@
                             <input type="text" name="fname"><br>
                         </div>
                         <div class="mb-3">
-                            <button method="POST" type="submit" name="savecourses" class="btn btn-dark">إضافة
-                                محاضرة</button>
+                            <button method="POST" type="submit" name="savecourses" class="btn btn-dark">إضافة محاضرة</button>
                         </div>
                         <div>
-                            <a href="Students_InClass.PHP?ClassID=<?= $_GET['ClassID']; ?>"
-                                class="btn btn-info btn-sm">عرض الطلبة</a>
+                            <a href="Students_InClass.PHP?ClassID=<?= $_GET['ClassID']; ?>" class="btn btn-info btn-sm">عرض الطلبة</a>
                         </div>
                         </from>
                         <div class="card-body">
@@ -68,38 +65,56 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php 
-                            if(isset($_GET['ClassID'])){
-                            $ClassID =mysqli_real_escape_string($con, $_GET['ClassID']);
-                            $query = "SELECT * FROM courses where ClassID_FK= $ClassID";
-                            $query_run = mysqli_query($con, $query);
-                            
-                            if(mysqli_num_rows($query_run) > 0)
-                            {
-                                foreach($query_run as $student)
-                                {
-                                    ?>
-                                    <tr>
-                                        <td><?= $student['CourseiID']; ?></td>
-                                        <td><?= $student['CourseName']; ?></td>
-                                        <td><?= $student['OpenDate']; ?></td>
-                                        <td>
-                                            <a href="Course_view.php?ClassID=<?php echo $_GET['ClassID'];?>"
-                                                class="btn btn-info btn-sm">عرض</a>
-                                        </td>
-                                    </tr>
                                     <?php
-                                }
-                            }
-                            else
-                            {
-                                echo "<h5> No Record Found </h5>";
-                            }
-                        }
-                        ?>
+                                    if (isset($_GET['ClassID'])) {
+                                        $ClassID = mysqli_real_escape_string($con, $_GET['ClassID']);
+                                        $query = "SELECT * FROM courses where ClassID_FK= $ClassID";
+                                        $query_run = mysqli_query($con, $query);
+
+                                        if (mysqli_num_rows($query_run) > 0) {
+                                            foreach ($query_run as $student) {
+                                    ?>
+                                                <tr>
+                                                    <td><?= $student['CourseiID']; ?></td>
+                                                    <td><?= $student['CourseName']; ?></td>
+                                                    <td><?= $student['OpenDate']; ?></td>
+                                                    <td>
+                                                        <a href="Course_view.php?CourseiID=<?php echo $student['CourseiID']; ?>" class="btn btn-info btn-sm">عرض</a>
+                                                    </td>
+                                                </tr>
+                                    <?php
+                                            }
+                                        } else {
+                                            echo "<h5> No Record Found </h5>";
+                                        }
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
+                            <!-- --------------------------------------------------------------------------------------------------------------- -->
 
+                            <!-- الاحتساب-->
+                            <?php
+                            if (isset($_GET['ClassID'])) {
+                                $ClassID = mysqli_real_escape_string($con, $_GET['ClassID']);
+                                $query = "SELECT * FROM courses where ClassID_FK= $ClassID
+                                ORDER BY CourseiID DESC LIMIT 1";
+                                $query_run = mysqli_query($con, $query);
+
+                                if (mysqli_num_rows($query_run) > 0) {
+                                    foreach ($query_run as $CourseiID) {
+                                        $CourseiID['CourseiID'];
+                                    }
+                                } else {
+                                    echo "<h5> No Record Found </h5>";
+                                }
+                            }
+                            ?>
+                            <!-- --------------------------------------------------------------------------------------------------------------- -->
+                        </div>
+                        <div class="mb-3">
+                            <button method="POST" title="رصد حضور" type="submit" name="Calc" class="btn btn-warning" value="<?= $student['CourseiID']; ?>"> احتساب </button>
+                            <input type="hidden" name="CourseiID" value="<?= $CourseiID['CourseiID']; ?>" />
                         </div>
                 </div>
             </div>

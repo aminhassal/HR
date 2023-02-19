@@ -193,6 +193,26 @@ if(isset($_POST['save_StudentInStudentclass']))
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+if(isset($_POST['Calc']))
+{
+    $CourseiID_FK = mysqli_real_escape_string($con, $_POST['CourseiID']);
+    $query = "INSERT INTO `masterofcourse`( `RecordID_FK`,`StudentUID`, `CourseiID_FK`)
+    SELECT DISTINCT `hrr`.`records`.`RecordID_PK` AS `RecordID_PK`,
+    `hrr`.`records`.`StudentUID` AS `StudentUID`,
+    `hrr`.`courses`.`CourseiID` AS `CourseiID` from (`hrr`.`records` join `hrr`.`courses`)
+     WHERE `hrr`.`records`.`RecordDate` = `hrr`.`courses`.`OpenDate`;";
+
+    $query_run = mysqli_query($con, $query);
+    if($query_run)
+    {
+        $_SESSION['message'] = "تم الاحتساب";
+    }
+    else
+    {
+       $_SESSION['message'] = " فشلت الاحتساب";
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////
 class DAL {
    public $StudentUID;
    public $RecordStatus;

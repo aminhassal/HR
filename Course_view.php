@@ -36,26 +36,26 @@ require 'config.php';
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>الرقم</th>
-                                <th>إسم الطالب</th>
-                                <th>رقم القيد</th>
+                                <th>إسم</th>
+                                <th>نوع السجل</th>
+                                <th> وقت الحضور </th>
                                 <th>حالة الحضور</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            if (isset($_GET['ClassID'])) {
-                                $ClassID = mysqli_real_escape_string($con, $_GET['ClassID']);
-                                $query = "SELECT * FROM `student_in_class` WHERE ClassID = $ClassID ";
+                            if (isset($_GET['CourseiID'])) {
+                                $CourseID = mysqli_real_escape_string($con, $_GET['CourseiID']);
+                                $query = "SELECT * FROM `attendence` WHERE CourseiID = $CourseID";
                                 $query_run = mysqli_query($con, $query);
 
                                 if (mysqli_num_rows($query_run) > 0) {
                                     foreach ($query_run as $student) {
                             ?>
                                         <tr>
-                                            <td><?= $student['Uid']; ?></td>
                                             <td><?= $student['Name']; ?></td>
-                                            <td><?= $student['InRollNumber']; ?></td>
+                                            <td><?= $student['RecordStatus']; ?></td>
+                                            <td><?= $student['RecordTime']; ?></td>
                                             <td <?php if (true) : ?> style="background-color:#0f0;" <?php endif; ?>>
                                                 <?php echo "حضور"; ?>
                                             </td>

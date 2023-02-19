@@ -41,15 +41,16 @@ while (list($idx, $attendancedata) = each($attendance)) :
         <td><?php echo $attendancedata[0] ?></td>
         <td><?php echo $attendancedata[1] ?></td>
         <td><?php echo $status ?></td>
-        <td><?php echo date("H:i:s", strtotime($attendancedata[3])) ?></td>
         <td><?php echo date("d-m-Y", strtotime($attendancedata[3])) ?></td>
+        <td><?php echo date("H:i:s", strtotime($attendancedata[3])) ?></td>
     </tr>
 <?php
     $tst->sqlInserto(
         $attendancedata[1],
         $status,
-        date("H:i:s", strtotime($attendancedata[3])),
-        date("d-m-Y", strtotime($attendancedata[3]))
+        date("d-m-Y", strtotime($attendancedata[3])),
+        date("H:i:s", strtotime($attendancedata[3]))
+
     );
 endwhile
 ?>
