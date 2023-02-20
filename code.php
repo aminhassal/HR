@@ -2,8 +2,6 @@
 session_start();
 require 'config.php';
 header('Content-Type: text/html; charset=utf-8');
-
-
 //                     
 //Course Insert
 if(isset($_POST['savecourses']))
@@ -30,15 +28,6 @@ if(isset($_POST['savecourses']))
         exit(0);
     }
 }
-//Delete Student From Class \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ <<<<<
-// select `hrr`.`infostd`.`Uid` AS `Uid`,
-// `hrr`.`infostd`.`Name` AS `Name`,
-// `hrr`.`infostd`.`InRollNumber` AS `InRollNumber`
-// ,`hrr`.`studentclass`.`ClassID` AS `ClassID`
-//  from (((`hrr`.`class` join `hrr`.`subjects` on(`hrr`.`class`.`SubjectID_FK` = `hrr`.`subjects`.`SubjectID_PK`))
-//   join `hrr`.`studentclass` on(`hrr`.`class`.`ClassID` = `hrr`.`studentclass`.`ClassID`))
-//  join `hrr`.`infostd` on(`hrr`.`studentclass`.`StdUid_FK` = `hrr`.`infostd`.`Uid`))
-
 if(isset($_POST['delete_studentInClassID']))
 {
     $student = mysqli_real_escape_string($con, $_POST['delete_studentInClassID']);
@@ -217,42 +206,3 @@ if(isset($_POST['Calc']))
        $_SESSION['message'] = " فشلت الاحتساب";
     }
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// class DAL {
-//    public $StudentUID;
-//    public $RecordStatus;
-//    public $RecordDate;
-//    public $RecordTime;
-// public function sqlInserto($uid, $RecordStatus, $RecordDate,$RecordTime){
-//    require("config.php");
-//    $insertquery =
-//     "INSERT INTO`records`
-//     (`StudentUID`,
-//       `RecordStatus`,
-//        `RecordDate`,
-//         `RecordTime`)
-//     VALUES
-//      ($uid,'$RecordStatus','$RecordDate','$RecordTime');";
-//    $insertresult = mysqli_query($con, $insertquery) or die(mysqli_error($con));
-//    return $insertresult;
-//    }
-// }
-// class DAL_INF {
-//    public $ID;
-//    public $uid;
-//    public $Name;
-//    public $Password;
-// public function sqlInsertoinfo($uid,$ID,$Name,$Password){
-//    require("config.php");
-//    $insertquery =
-//     "INSERT INTO`infostd`
-//        (`Uid`,
-//         `STD_id`,
-//         `Name`,
-//         `Password`)
-//     VALUES
-//      ($uid,$ID,'$Name','$Password');";
-//    $insertresult = mysqli_query($con, $insertquery) or die(mysqli_error($con));
-//    return $insertresult;
-//    }
-// }
