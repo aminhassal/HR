@@ -1,24 +1,5 @@
 <?php
- class DAL {
-    public $StudentUID;
-    public $RecordStatus;
-    public $RecordDate;
-    public $RecordTime;
-public function sqlInserto($uid, $RecordStatus, $RecordDate,$RecordTime){
-    require("config.php");
-    $insertquery =
-     "INSERT INTO`records`
-     (`StudentUID`,
-       `RecordStatus`,
-        `RecordDate`,
-         `RecordTime`)
-     VALUES
-      ($uid,'$RecordStatus','$RecordDate','$RecordTime');";
-    $insertresult = mysqli_query($con, $insertquery) or die(mysqli_error($con));
-    return $insertresult;
-    }
- }
- class DAL_INF {
+ class Users {
     public $ID;
     public $uid;
     public $Name;
@@ -27,7 +8,7 @@ public function sqlInserto($uid, $RecordStatus, $RecordDate,$RecordTime){
 public function sqlInsertoinfo($uid,$ID,$Name,$Password){
     require("config.php");
     $insertquery =
-     "INSERT INTO`infostd`
+     "INSERT IGNORE INTO`infostd`
         (`Uid`,
          `STD_id`,
          `Name`,

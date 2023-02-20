@@ -131,6 +131,7 @@ html {
                         <h4>بيانات طالب
                             <a href="student-create.php" class="btn btn-dark float-end">تسجيل طالب</a>
                         </h4>
+                        <a href="SyncStudents.php" class="btn btn-success float-end"> تحديث الطلبة </a>
                     </div>
                     <div class="card-body">
 

@@ -20,7 +20,7 @@
                 <div class="shadow-lg p-3 mb-5 bg-body rounded">
                     <div class="card-header">
                         <h4> إضافة طالب
-                            <a href="Students_InClass.PHP?ClassID=<?php echo $_GET['ClassID'];?>"
+                            <a href="class_view.php?ClassID=<?php echo $_GET['ClassID'];?>"
                              class="btn btn-danger float-end">رجوع</a>
                         </h4>
                     </div>

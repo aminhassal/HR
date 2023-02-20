@@ -1,32 +1,10 @@
 <?php
 include("zklib/zklib.php");
-include("DAL/Test.php");
+include("DAL/Records.php");
 
 $zk = new ZKLib("192.168.1.201", 4370);
-$tst = new DAL();
-$tstInfo = new DAL_INF();
+$tst = new Records();
 $ret = $zk->connect();
-
-try {
-    $user = $zk->getUser();
-    sleep(1);
-    while (list($uid, $userdata) = each($user)) :
-        if ($userdata[2] == LEVEL_ADMIN)
-            $role = 'ADMIN';
-        elseif ($userdata[2] == LEVEL_USER)
-            $role = 'USER';
-        else
-            $role = 'Unknown';
-?>
-<?php
-        $tstInfo->sqlInsertoinfo($uid, $userdata[0], $userdata[1], $userdata[3]);
-    endwhile;
-} catch (Exception $e) {
-    header("HTTP/1.0 404 Not Found");
-    header('HTTP', true, 500); // 500 internal server error                
-}
-?>
-<?php
 $attendance = $zk->getAttendance();
 sleep(1);
 while (list($idx, $attendancedata) = each($attendance)) :
@@ -44,6 +22,7 @@ while (list($idx, $attendancedata) = each($attendance)) :
         <td><?php echo date("d-m-Y", strtotime($attendancedata[3])) ?></td>
         <td><?php echo date("H:i:s", strtotime($attendancedata[3])) ?></td>
     </tr>
+    <script>alert("تمت المزامنة")</script>;
 <?php
     $tst->sqlInserto(
         $attendancedata[1],
@@ -54,3 +33,4 @@ while (list($idx, $attendancedata) = each($attendance)) :
     );
 endwhile
 ?>
+<meta http-equiv="refresh" content="0;URL=lecture.php" />

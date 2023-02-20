@@ -80,6 +80,9 @@
                               <a class="nav-link" href="lecture.php">محاضرات</a>
                            </li>
                            <li class="nav-item">
+                              <a class="nav-link" href="Subjects.PHP"> المواد</a>
+                           </li>
+                           <li class="nav-item">
                               <a class="nav-link" href="login.php">تسجيل خروج</a>
                            </li>
                         </ul>
@@ -124,7 +127,7 @@
                   <a href="courses.php" class="btn btn-dark float-end">   فتح فصل</a>
           </div>
           <div class="card-header">
-                    <a href="SyncOrder.php" class="btn btn-dark float-end">   مزامنة السجلات     </a>
+                    <a href="GetRecord.php" class="btn btn-dark float-end">   مزامنة سجلات الطلبة     </a>
             </div>
             <div class="card-body">
 

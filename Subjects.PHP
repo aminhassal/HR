@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    require 'config.php';
+session_start();
+require 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +30,7 @@
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-        media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -61,30 +60,9 @@
                     </div>
                     <div class="col-xl-7 col-lg-7 col-md-9 col-sm-9">
                         <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
-                                aria-label="Toggle navigation">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-                            <div class="collapse navbar-collapse mr-5 pr-3" id="navbarsExample04">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item ">
-                                        <a class="nav-link" href="Old_index1.php"> الرئسية </a>
-                                    </li>
-                                    <li class="nav-item  ">
-                                        <a class="nav-link" href="about.php">حول</a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link" href="register.php">تسجيل طالب</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="lecture.php">محاضرات</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="login.php">تسجيل خروج</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </nav>
                     </div>
                     <div class="col-md-2">
@@ -116,10 +94,14 @@
     <div class="container mt-4">
         <?php include('message.php'); ?>
         <div class="row">
+            <div class="card-header">
+                <a href="lecture.PHP" class="btn btn-danger float-end"> رجوع </a>
+            </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
+
                             <thead>
                                 <tr>
                                     <th>رقم تعريف المادة</th>
@@ -128,29 +110,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
-                            $query = "SELECT * FROM `subjects`";
-                            $query_run = mysqli_query($con, $query);
-
-                            if(mysqli_num_rows($query_run) > 0)
-                            {
-                                foreach($query_run as $subjects)
-                                {
-                                    ?>
-                                <tr>
-                                    <td><?= $subjects['SubjectID_PK']; ?></td>
-                                    <td><?= $subjects['SubjectName']; ?></td>
-                                    <td><?= $subjects['SubjectCode']; ?></td>
-                                    </td>
-                                </tr>
                                 <?php
+                                $query = "SELECT * FROM `subjects`";
+                                $query_run = mysqli_query($con, $query);
+
+                                if (mysqli_num_rows($query_run) > 0) {
+                                    foreach ($query_run as $subjects) {
+                                ?>
+                                        <tr>
+                                            <td><?= $subjects['SubjectID_PK']; ?></td>
+                                            <td><?= $subjects['SubjectName']; ?></td>
+                                            <td><?= $subjects['SubjectCode']; ?></td>
+                                            </td>
+                                        </tr>
+                                <?php
+                                    }
+                                } else {
+                                    echo "<h5> No Record Found </h5>";
                                 }
-                            }
-                            else
-                            {
-                                echo "<h5> No Record Found </h5>";
-                            }
-                        ?>
+                                ?>
                             </tbody>
                         </table>
                     </div>
