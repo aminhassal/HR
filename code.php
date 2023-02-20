@@ -174,10 +174,6 @@ if(isset($_POST['save_StudentInStudentclass']))
          ON DUPLICATE KEY UPDATE
         `StdUid_FK`='$StdUid_FK',`ClassID`='$ClassID';";
 
-    //  $query = "INSERT INTO `studentclass`(`StdUid_FK`, `ClassID`)
-    //  VALUES
-    // ('$StdUid_FK','$ClassID')";
-
     $query_run = mysqli_query($con, $query);
     if($query_run)
     {
