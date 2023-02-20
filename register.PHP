@@ -134,7 +134,6 @@ html {
                         <a href="SyncStudents.php" class="btn btn-success float-end"> تحديث الطلبة </a>
                     </div>
                     <div class="card-body">
-
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
