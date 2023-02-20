@@ -120,9 +120,6 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-                    <a href="Subjects.php" class="btn btn-dark float-end">   المواد    </a>
-            </div>
             <div class="card-header">  
                   <a href="courses.php" class="btn btn-dark float-end">   فتح فصل</a>
           </div>
